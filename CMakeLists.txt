@@ -22,6 +22,7 @@ add_library(methods
 #add_subdirectory(googletest)
 #include_directories(googletest)
 include_directories(eigen)
+include_directories(src/methods)
 
 add_executable(main src/main.cc)
 target_link_libraries(main pcsc)

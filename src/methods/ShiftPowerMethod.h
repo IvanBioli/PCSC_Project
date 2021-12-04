@@ -5,12 +5,15 @@
 
 template <typename T> class ShiftPowerMethod : public AbstractPowerMethod<T>{
 private:
-    Eigen::Matrix<T,-1,1> Multiply();
+    Eigen::Vector<T,-1> Multiply(const Eigen::Vector<T,-1> &x) override;
+    T _shift = 0;
+    T _return(T &lambda) override {return lambda + _shift;};
 
 public:
-    ShiftPowerMethod(Eigen::Matrix<T, -1, -1> &Mat); // Constructor that just sets the matrix
-    ShiftPowerMethod(Eigen::Matrix<T, -1, -1> &Mat, double tol, double maxit, Eigen::Matrix<T,-1,1> &x, double shift); // Constructor that sets matrix, maxit and tol
-    ShiftPowerMethod(std::map<std::string, std::any> &map); // Constructor that sets arguments from the map
-    ~ShiftPowerMethod();
+    ShiftPowerMethod(const Eigen::Matrix<T, -1, -1> &A) : AbstractPowerMethod<T>(A) {}; // Constructor that just sets the matrix
+    ShiftPowerMethod(const Eigen::Matrix<T, -1, -1> &A, const double &tol, const int &maxit, const Eigen::Vector<T, -1> &x, const double &shift); // Constructor that sets matrix, maxit, tol and shift
+    ShiftPowerMethod(const std::map<std::string, std::any> &map); // Constructor that sets arguments from the map
+    void SetShift(const T &shift) {_shift = shift;};
+    // ~ShiftPowerMethod();
 };
 #endif //SHIFTPOWERMETHOD_H_
