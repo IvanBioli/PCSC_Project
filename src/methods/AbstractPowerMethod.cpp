@@ -25,7 +25,7 @@ void AbstractPowerMethod<T>::SetInitVec(const Eigen::Matrix<T, -1, 1> &x0) {
 
 /// Power method
 template <typename T>
-std::vector<std::complex<double>> AbstractPowerMethod<T>::ComputeEigs() {
+Eigen::Vector<std::complex<double>, -1> AbstractPowerMethod<T>::ComputeEigs() {
     Eigen::Vector<T, -1> x, x_mul;
     int it;
     T lambda, lambda_prev;
@@ -50,8 +50,8 @@ std::vector<std::complex<double>> AbstractPowerMethod<T>::ComputeEigs() {
         throw(std::runtime_error("Reached maximum number of iterations"));
     }
     // Returning the eigenvalue
-    std::vector<std::complex<double>> eigs;
-    eigs.push_back(_return(lambda));
+    Eigen::Vector<std::complex<double>, 1> eigs;
+    eigs[0] = _return(lambda);
     return eigs;
 }
 

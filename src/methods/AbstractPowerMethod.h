@@ -14,7 +14,7 @@ public:
     AbstractPowerMethod(const Eigen::Matrix<T, -1, -1> &A, const double &tol, const int maxit, const Eigen::Matrix<T,-1,1> &x0);
     AbstractPowerMethod(const std::map<std::string, std::any> &map);
     void SetInitVec(const Eigen::Matrix<T,-1,1> &x0);
-    virtual std::vector<std::complex<double>> ComputeEigs() override;
+    virtual Eigen::Vector<std::complex<double>, -1> ComputeEigs() override;
 };
 
 #endif //ABSTRACTPOWERMETHOD_H_

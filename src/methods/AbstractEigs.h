@@ -23,7 +23,7 @@ public:
     virtual void SetMatrix(const Eigen::Matrix<T, -1, -1> &A); // Sets the matrix
     void SetTol(const double &t);
     void SetMaxit(const int &i);
-    virtual std::vector<std::complex<double>> ComputeEigs() = 0;
+    virtual Eigen::Vector<std::complex<double>, -1> ComputeEigs() = 0;
 };
 
 

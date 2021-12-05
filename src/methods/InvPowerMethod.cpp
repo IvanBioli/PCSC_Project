@@ -1,7 +1,7 @@
 #include "InvPowerMethod.h"
 
 template <typename T>
-std::vector<std::complex<double>> InvPowerMethod<T>::ComputeEigs() {
+Eigen::Vector<std::complex<double>, -1> InvPowerMethod<T>::ComputeEigs() {
     _LU = this->_A.fullPivLu();
     return AbstractPowerMethod<T>::ComputeEigs();
 }
