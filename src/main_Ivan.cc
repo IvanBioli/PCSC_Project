@@ -22,35 +22,40 @@ int main(int argc, char **argv) {
 
     // Power Method
     PowerMethod<double> power(A,tol,itmax,x0);
-    std::vector<std::complex<double>> eigs;
+    Eigen::Vector<std::complex<double>, -1> eigs;
     eigs = power.ComputeEigs();
-    std::cout << "Power method: " << eigs[0] << std::endl;
+    std::cout << "Power method: " << eigs << std::endl;
 
     // ShiftPower Method
     double shift = 7;
     ShiftPowerMethod<double> shiftpower(A,tol,itmax,x0, shift);
     eigs = shiftpower.ComputeEigs();
-    std::cout << "Shifted power method with shift " << shift << " : " << eigs[0] <<std::endl;
+    std::cout << "Shifted power method with shift " << shift << " : " << eigs <<std::endl;
 
     // InvPowerMethod
     InvPowerMethod<double> invpower(A,tol,itmax,x0);
     eigs = invpower.ComputeEigs();
-    std::cout << "Inverse power method: " << eigs[0] <<std::endl;
+    std::cout << "Inverse power method: " << eigs <<std::endl;
     invpower.SetMatrix(-A);
     eigs = invpower.ComputeEigs();
-    std::cout << "Inverse power method, -A: " << eigs[0] <<std::endl;
+    std::cout << "Inverse power method, -A: " << eigs <<std::endl;
 
 
     // ShiftInvPowerMethod
     shift = 4;
     ShiftInvPowerMethod<double> shiftinvpower(A,tol,itmax,x0, shift);
     eigs = shiftinvpower.ComputeEigs();
-    std::cout << "Inverse power method with shift = " << shift<< " : " << eigs[0] <<std::endl;
+    std::cout << "Inverse power method with shift = " << shift<< " : " << eigs <<std::endl;
 
     shift = 5.4;
     shiftinvpower.SetShift(shift);
     eigs = shiftinvpower.ComputeEigs();
-    std::cout << "Inverse power method with shift = " << shift<< " : " << eigs[0] <<std::endl;
+    std::cout << "Inverse power method with shift = " << shift<< " : " << eigs <<std::endl;
+
+    // QR Method
+    QRMethod<double> qrmethod(A);
+    eigs = qrmethod.ComputeEigs();
+    std::cout << "QR method:\n " << eigs << std::endl;
 
     return 0;
 }
