@@ -18,17 +18,23 @@ add_library(methods
         src/methods/ShiftPowerMethod.cpp
 )
 
+add_library(reader
+        src/reader/Reader.cpp
+        src/reader/FileReader.cpp
+        )
 
 #add_subdirectory(googletest)
 #include_directories(googletest)
 include_directories(eigen)
 include_directories(src/methods)
+include_directories(src/reader)
+#include_directories(src/exceptions)
 
 add_executable(main src/main.cc)
 target_link_libraries(main pcsc)
 
 add_executable(main_Ivan src/main_Ivan.cc)
-target_link_libraries(main_Ivan methods)
+target_link_libraries(main_Ivan methods reader)
 
 #add_executable(test_pcsc test/test.cc)
 #target_link_libraries(test_pcsc gtest_main gtest pthread pcsc)
