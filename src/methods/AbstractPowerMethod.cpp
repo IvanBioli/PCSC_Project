@@ -4,21 +4,30 @@
 template <typename T>
 AbstractPowerMethod<T>::AbstractPowerMethod(const Eigen::Matrix<T, -1, -1> &A, const double &tol, const int maxit,
                                             const Eigen::Matrix<T, -1, 1> &x0) : AbstractEigs<T>(A, tol, maxit) {
-    if(x0.norm() < 1e-8){
-        throw(std::runtime_error("Zero initial vector"));
-    }
-    _x0 = x0;
+    SetInitVec(x0);
 }
 
 template <typename T>
-AbstractPowerMethod<T>::AbstractPowerMethod(const std::map<std::string, std::any> &map) : AbstractEigs<T>(map) {
-    throw(std::runtime_error("Not implemented"));
+AbstractPowerMethod<T>::AbstractPowerMethod(std::map<std::string, std::any> &map) : AbstractEigs<T>(map) {
+    // Vector
+    if (map.count("x0") == 0) {
+        throw(InitializationError("Missing argument: initial vector x0"));
+    }
+    try {
+        SetInitVec(std::any_cast<Eigen::Vector<T, -1>>(map["x0"]));
+    }
+    catch (std::bad_any_cast &e){
+        throw(InitializationError("Unable to cast the initial vector to the expected type"));
+    }
 }
 
 template <typename T>
 void AbstractPowerMethod<T>::SetInitVec(const Eigen::Matrix<T, -1, 1> &x0) {
     if(x0.norm() < 1e-8){
-        throw(std::runtime_error("Zero initial vector"));
+        throw(InitializationError("Attempting to set initial vector with norm lower than 1e-8"));
+    }
+    if (x0.rows() != this -> _A.cols()){
+        throw(InitializationError("Attempting to set initial vector with incorrect size"));
     }
     _x0 = x0;
 }

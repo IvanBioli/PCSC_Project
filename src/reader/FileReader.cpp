@@ -2,7 +2,52 @@
 
 template <typename T>
 void FileReader<T>::Read() {
-    throw(std::runtime_error("Not implemented"));
+    std::ifstream read_file(this->_path);
+    if(!read_file.is_open()){
+        throw(FileNotOpen("Not able to open input file in " + this->_path));
+    }
+
+    std::string line;
+    while (std::getline(read_file, line)){
+        if (line != ""){
+            std::any box;
+            if (line == "Matrix"){
+                int n, m;
+                n = NumericInput<int>(read_file);
+                m = NumericInput<int>(read_file);
+                Eigen::Matrix<T, -1 ,-1> A(n, m);
+                for (int i = 0; i < n; ++i) {
+                    for (int j = 0; j < m; ++j){
+                        A(i,j) = NumericInput<T>(read_file);
+                    }
+                }
+                box = A;
+            }
+            else if (line == "Vector"){
+                int n;
+                std::getline(read_file, line);
+                n = NumericInput<int>(read_file);
+                Eigen::Vector<T, -1> vec(n);
+                for (int i = 0; i < n; ++i) {
+                    vec(i) = NumericInput<T>(read_file);
+                }
+                box = vec;
+            }
+            else{ // We assume in this case to get a scalar
+                T num;
+                num = NumericInput<T>(read_file);
+                box = num;
+            }
+            this->_map[line] = box;
+        }
+    }
+}
+
+template <typename T>
+template<typename T1> T1 FileReader<T>::NumericInput(std::ifstream &read_file) {
+    T1 num;
+    read_file >> num;
+    return num;
 }
 
 // Needed for linking
