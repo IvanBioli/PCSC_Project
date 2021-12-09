@@ -10,11 +10,12 @@ protected:
     virtual T _return(T &lambda) {return lambda;};
 
 public:
-    // TODO: ADD DEFAULT INITIAL VECTOR TO CONSTRUCTOR WITH ONLY MATRIX AND WITH MAP
-    AbstractPowerMethod(const Eigen::Matrix<T, -1, -1> &A) : AbstractEigs<T>(A) {};
+    AbstractPowerMethod(const Eigen::Matrix<T, -1, -1> &A);
     AbstractPowerMethod(const Eigen::Matrix<T, -1, -1> &A, const double &tol, const int maxit, const Eigen::Matrix<T,-1,1> &x0);
     AbstractPowerMethod(std::map<std::string, std::any> &map);
+    virtual ~AbstractPowerMethod() override {};
     void SetInitVec(const Eigen::Matrix<T,-1,1> &x0);
+    Eigen::Vector<T,-1> GetInitVec() {return _x0;};
     virtual Eigen::Vector<std::complex<double>, -1> ComputeEigs() override;
 };
 

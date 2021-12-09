@@ -2,7 +2,6 @@
 #define QRMETHOD_H
 
 #include "AbstractEigs.h"
-// #include "Eigen/QR"
 
 template <typename T> class QRMethod : public AbstractEigs<T>{
 public:
@@ -10,7 +9,7 @@ public:
     QRMethod(const Eigen::Matrix<T, -1, -1> &A, const double &tol, const double &maxit) : AbstractEigs<T>(A, tol, maxit) {}; // Constructor that sets matrix, maxit and tol
     QRMethod(std::map<std::string, std::any> &map) : AbstractEigs<T>(map) {}; // Constructor that sets arguments from the map
     virtual Eigen::Vector<std::complex<double>, -1> ComputeEigs();
-    // ~QRMethod();
+    virtual ~QRMethod() override {};
 };
 
 #endif //QRMETHOD_H_

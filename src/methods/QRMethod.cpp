@@ -18,13 +18,10 @@ Eigen::Vector<std::complex<double>, -1> QRMethod<T>::ComputeEigs() {
         throw(std::runtime_error("Reached maximum number of iterations"));
     }
     Eigen::Vector<std::complex<double>, -1> eigs;
-    // TO HANDLE THE CASE OF COMPLEX EIGENVALUES
-    std::cout << A_next.diagonal(-1) << std::endl;
+    // TODO: HANDLE THE CASE OF COMPLEX EIGENVALUES
     eigs = A_next.diagonal();
     return eigs;
 }
 
 // Needed for linking
 template class QRMethod<double>;
-template class QRMethod<std::complex<double>>;
-

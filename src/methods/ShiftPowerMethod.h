@@ -16,6 +16,7 @@ public:
     ShiftPowerMethod(const Eigen::Matrix<T, -1, -1> &A, const double &tol, const int &maxit, const Eigen::Vector<T, -1> &x0, const T &shift); // Constructor that sets matrix, maxit, tol and shift
     ShiftPowerMethod(std::map<std::string, std::any> &map); // Constructor that sets arguments from the map
     void SetShift(const T &shift) {_shift = shift;};
-    // ~ShiftPowerMethod();
+    T GetShift() {return _shift;};
+    virtual ~ShiftPowerMethod() override {};
 };
 #endif //SHIFTPOWERMETHOD_H_

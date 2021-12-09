@@ -26,8 +26,12 @@ public:
     AbstractEigs(const Eigen::Matrix<T, -1, -1> &A); // Constructor that just sets the matrix
     AbstractEigs(const Eigen::Matrix<T, -1, -1> &A, const double &tol, const int &maxit); // Constructor that sets matrix, maxit and tol
     AbstractEigs(std::map<std::string, std::any> &map); // Constructor that sets arguments from the map
+    virtual ~AbstractEigs(){};
     void SetTol(const double &t);
     void SetMaxit(const int &i);
+    Eigen::Matrix<T,-1,-1> GetMatrix() {return _A;};
+    double GetTol() {return _tol;};
+    int GetMaxit() {return _maxit;};
     virtual Eigen::Vector<std::complex<double>, -1> ComputeEigs() = 0;
 };
 
