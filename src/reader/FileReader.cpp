@@ -11,7 +11,7 @@ void FileReader<T>::Read() {
     while (std::getline(read_file, line)){
         if (line != ""){
             std::any box;
-            if (line == "Matrix"){
+            if (line == "matrix"){
                 int n, m;
                 n = NumericInput<int>(read_file);
                 m = NumericInput<int>(read_file);
@@ -23,7 +23,7 @@ void FileReader<T>::Read() {
                 }
                 box = A;
             }
-            else if (line == "Vector"){
+            else if (line == "vector"){
                 int n;
                 std::getline(read_file, line);
                 n = NumericInput<int>(read_file);
@@ -33,9 +33,14 @@ void FileReader<T>::Read() {
                 }
                 box = vec;
             }
-            else{ // We assume in this case to get a scalar
-                T num;
-                num = NumericInput<T>(read_file);
+            else if (line == "shift"){
+                T shift;
+                shift = NumericInput<T>(read_file);
+                box = shift;
+            }
+            else{ // We assume in this case to get a scalar that is a double
+                double num;
+                num = NumericInput<double>(read_file);
                 box = num;
             }
             this->_map[line] = box;

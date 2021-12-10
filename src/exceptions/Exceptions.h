@@ -11,7 +11,8 @@ public:
 
 class InitializationError : public std::runtime_error {
 public:
-    InitializationError(const std::string &msg) : std::runtime_error(msg){};
+    using std::runtime_error::runtime_error;
+//  InitializationError(const std::string &msg) : std::runtime_error(msg){};
 };
 
 class ReadingError : public std::runtime_error {
@@ -20,6 +21,7 @@ public:
 };
 
 class ConvergenceError : public std::runtime_error {
+public:
     ConvergenceError(const std::string &msg) : std::runtime_error(msg){};
 };
 

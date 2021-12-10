@@ -63,9 +63,10 @@ Eigen::Vector<std::complex<double>, -1> AbstractPowerMethod<T>::ComputeEigs() {
         lambda = x.adjoint() * x_mul;
         // Residual for the stopping criterion
         res = std::abs(lambda - lambda_prev);
+        it = it + 1;
     }
     if (it == this->_maxit){
-        throw(std::runtime_error("Reached maximum number of iterations"));
+        throw(ConvergenceError("Reached maximum number of iterations"));
     }
     // Returning the eigenvalue
     Eigen::Vector<std::complex<double>, 1> eigs;
