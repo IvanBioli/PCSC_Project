@@ -1,15 +1,14 @@
 #include "ShiftPowerMethod.h"
-/// CONSTRUCTORS
-template <typename T>
-ShiftPowerMethod<T>::ShiftPowerMethod(const Eigen::Matrix<T, -1, -1> &A, const double &tol, const int &maxit,
-                                      const Eigen::Vector<T, -1> &x, const T &shift)
-                                      : AbstractPowerMethod<T>(A, tol, maxit, x) {
-    _shift = shift;
-}
 
+// Constructors
+/**
+ * @details At least the matrix has to be provided. If the initial vector is not provided, it is set by default to a
+ * vector of all ones and a warning is given to the user. If the tolerance, the maximum number of iterations or the
+ * shift are not provided, they are set to the default value and a warning is given to the user.
+ */
 template <typename T>
 ShiftPowerMethod<T>::ShiftPowerMethod(std::map<std::string, std::any> &map) : AbstractPowerMethod<T> (map) {
-    // Shift
+    // Getting and setting the shift
     if (map.count("shift") > 0) {
         T shift;
         try {
@@ -25,12 +24,6 @@ ShiftPowerMethod<T>::ShiftPowerMethod(std::map<std::string, std::any> &map) : Ab
     }
 }
 
-/// PRIVATE METHODS
-template <typename T>
-Eigen::Vector<T, -1> ShiftPowerMethod<T>::Multiply(const Eigen::Vector<T, -1> &x) {
-    return this->_A * x - _shift * x;
-}
-
-// Needed for linking
+// Explicit instantiation for double and std::complex<double>
 template class ShiftPowerMethod<double>;
 template class ShiftPowerMethod<std::complex<double>>;

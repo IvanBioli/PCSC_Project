@@ -1,10 +1,5 @@
 #include "PowerMethod.h"
 
-template <typename T>
-Eigen::Vector<T, -1> PowerMethod<T>::Multiply(const Eigen::Vector<T, -1> &x) {
-    return this->_A * x;
-}
-
-// Needed for linking
+// Explicit instantiation for double and std::complex<double>
 template class PowerMethod<double>;
 template class PowerMethod<std::complex<double>>;
