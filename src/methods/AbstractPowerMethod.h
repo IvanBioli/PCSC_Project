@@ -4,7 +4,7 @@
 #include "AbstractEigs.h"
 
 /** @class AbstractPowerMethod
- * @brief Abstract class to compute eigenvalues of general matrices using the power method scheme.
+ * @brief Abstract class for computing eigenvalues of general matrices using the power method scheme.
  * @tparam T Can be <tt>double</tt> or <tt>std::complex<double></tt>.
  * @details The Power Method @cite GolubVanLoan computes the largest magnitude eigenvalue of a matrix \f$A\f$.
  * The Power Method can be described in the following way:
@@ -12,7 +12,7 @@
  *  2. At each iteration \f$k\f$:
  *      1. \f$x^{(k+1)} = Ax^{(k)} / ||Ax^{(k)}||\f$
  *      2. \f$\lambda^{(k+1)} = x^{(k+1)}\cdot Ax^{(k+1)}\f$
- *      3. If not converged, return to step 2.1
+ *      3. If not converged, return to step 2.a
  *
  *  The stopping criterion that determines if the method converged is \f$|\lambda^{(k+1)} - \lambda^{(k)}| < \epsilon |\lambda^{(k+1)}|\f$,
  *  where \f$\epsilon\f$ is a prescribed tolerance. In any case, the iterations are stopped when \f$k\f$ exceeds the
@@ -23,11 +23,11 @@
  *  \f$A\f$. It basically consists in the Power Method applied to the matrix \f$A^{-1}\f$.
  *  @see InvPowerMethod
  *
- *  The Power Method with shift @cite GolubVanLoan computes eigenvalue of \f$A\f$ farthest from a particular value
+ *  The Power Method with shift @cite GolubVanLoan computes the eigenvalue of \f$A\f$ farthest from a particular value
  *  \f$\sigma\f$. It basically consists in the Power Method applied to the matrix \f$A - \sigma I\f$.
  *  @see ShiftPowerMethod
  *
- *  The Inverse Power Method with shift @cite GolubVanLoan computes eigenvalue of \f$A\f$ closest a particular value
+ *  The Inverse Power Method with shift @cite GolubVanLoan computes the eigenvalue of \f$A\f$ closest a particular value
  *  \f$\sigma\f$. It basically consists in the Power Method applied to the matrix \f$(A - \sigma I)^{-1}\f$, if it is
  *  non singular.
  *  @see ShiftInvPowerMethod

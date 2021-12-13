@@ -4,19 +4,19 @@
 #include "AbstractPowerMethod.h"
 
 /** @class InvPowerMethod
- * @brief Computes the smallest magnitude eigenvalue of general matrices using the Inverse Power Method.
+ * @brief Class for computing the smallest magnitude eigenvalue of general matrices using the Inverse Power Method.
  * @tparam T Can be <tt>double</tt> or <tt>std::complex<double></tt>.
  * @details The Inverse Power Method @cite GolubVanLoan computes the smallest magnitude eigenvalue of a non singular
  * matrix \f$A\f$.
  * The Inverse Power Method can be described in the following way:
  *  1. Starting from an initial nonzero vector \f$x^{(0)}\f$, divide it by its norm: \f$x^{(0)} = x^{(0)} / ||x^{(0)}||\f$
- *  2. Compute the LU factorization of A
+ *  2. Compute the LU factorization of \f$A\f$
  *  3. At each iteration \f$k\f$:
  *      1. Solve \f$Ax^{(k+1)} = x^{(k)}\f$
  *      2. \f$x^{(k+1)} = x^{(k+1)} / ||x^{(k+1)}||\f$
  *      3. \f$\mu^{(k+1)} = x^{(k+1)}\cdot A^{(-1)}x^{(k+1)}\f$ (without solving the system again)
- *      4. If not converged, return to step 2.1
- *  5. If converged, return \f$\lambda = 1 / \mu^{(k+1)}\f$
+ *      4. If not converged, return to step 3.a
+ *  4. If converged, return \f$\lambda = 1 / \mu^{(k+1)}\f$
  *
  *  The stopping criterion that determines if the method converged is \f$|\mu^{(k+1)} - \mu^{(k)}| < \epsilon |\mu^{(k+1)}|\f$,
  *  where \f$\epsilon\f$ is a prescribed tolerance. In any case, the iterations are stopped when \f$k\f$ exceeds the

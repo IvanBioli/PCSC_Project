@@ -11,7 +11,7 @@
 #include "Exceptions.h"
 
 /** @class AbstractEigs
- * @brief Abstract class to compute eigenvalues of general matrices.
+ * @brief Abstract class for computing eigenvalues of general matrices.
  * @tparam T Can be <tt>double</tt> or <tt>std::complex<double></tt>.
  * @details The eigenvalues and eigenvectors of a square matrix \f$A\f$ of size \f$n\f$ are scalars \f$\lambda\f$ and vectors \f$v\neq0\f$
  * such that \f$Av = \lambda v\f$. The previous equation can be written as \f$(A - \lambda I)v\f$, therefore

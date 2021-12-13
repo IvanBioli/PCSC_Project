@@ -4,7 +4,7 @@
 #include "AbstractPowerMethod.h"
 
 /** @class PowerMethod
- * @brief Computes the largest magnitude eigenvalue of general matrices using the Power Method.
+ * @brief Class for computing the largest magnitude eigenvalue of general matrices using the Power Method.
  * @tparam T Can be <tt>double</tt> or <tt>std::complex<double></tt>.
  * @details The Power Method @cite GolubVanLoan computes the largest magnitude eigenvalue of a matrix \f$A\f$.
  * The Power Method can be described in the following way:
@@ -12,7 +12,7 @@
  *  2. At each iteration \f$k\f$:
  *      1. \f$x^{(k+1)} = Ax^{(k)} / ||Ax^{(k)}||\f$
  *      2. \f$\lambda^{(k+1)} = x^{(k+1)}\cdot Ax^{(k+1)}\f$
- *      3. If not converged, return to step 2.1
+ *      3. If not converged, return to step 2.a
  *  3. If converged, return \f$\lambda^{(k+1)}\f$
  *
  *  The stopping criterion that determines if the method converged is \f$|\lambda^{(k+1)} - \lambda^{(k)}| < \epsilon |\lambda^{(k+1)}|\f$,

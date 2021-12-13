@@ -33,7 +33,7 @@ int main(int argc, char **argv) {
     PowerMethod<double> eigs_solver(A, tol, maxit, x0);
     std::cout << "The largest magnitude eigenvalue computed using tolerance " << tol;
     std::cout << " and maximum number of iterations " << maxit << " is:\n" << eigs_solver.ComputeEigs();
-    */
+
     double tol = 1e-10;
     int maxit = 1000;
     Eigen::Matrix<double, -1, -1> A(5,5);
@@ -49,7 +49,7 @@ int main(int argc, char **argv) {
     InvPowerMethod<double> eigs_solver(A, tol, maxit, x0);
     std::cout << "The smallest magnitude eigenvalue computed using tolerance " << tol;
     std::cout << " and maximum number of iterations " << maxit << " is:\n" << eigs_solver.ComputeEigs();
-    /*
+
     double tol = 1e-10;
     int maxit = 1000;
     double shift = 6;
@@ -66,6 +66,7 @@ int main(int argc, char **argv) {
     ShiftPowerMethod<double> eigs_solver(A, tol, maxit, x0, shift);
     std::cout << "The eigenvalue of A farthest from " << shift << " computed using tolerance " << tol;
     std::cout << " and maximum number of iterations " << maxit << " is:\n" << eigs_solver.ComputeEigs();
+
 
     double tol = 1e-10;
     int maxit = 1000;
@@ -84,7 +85,6 @@ int main(int argc, char **argv) {
     std::cout << "The eigenvalue of A closest to " << shift << " computed using tolerance " << tol;
     std::cout << " and maximum number of iterations " << maxit << " is:\n" << eigs_solver.ComputeEigs();
     */
-    /*
     double tol = 1e-10;
     int maxit = 1000;
     Eigen::Matrix<double, -1, -1> A(5,5);
@@ -99,5 +99,4 @@ int main(int argc, char **argv) {
     QRMethod<double> eigs_solver(A, tol, maxit);
     std::cout << "The eigenvalues of A computed using tolerance " << tol;
     std::cout << " and maximum number of iterations " << maxit << " are:\n" << eigs_solver.ComputeEigs();
-    */
 }
