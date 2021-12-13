@@ -10,9 +10,44 @@
 #include <any>
 #include "Exceptions.h"
 
-/** @class
- * TODO: General description of the AbstractEigs class
+/** @class AbstractEigs
+ * @brief Abstract class to compute eigenvalues of general matrices.
+ * @tparam T Can be <tt>double</tt> or <tt>std::complex<double></tt>.
+ * @details The eigenvalues and eigenvectors of a square matrix \f$A\f$ of size \f$n\f$ are scalars \f$\lambda\f$ and vectors \f$v\neq0\f$
+ * such that \f$Av = \lambda v\f$. The previous equation can be written as \f$(A - \lambda I)v\f$, therefore
+ * \f$\lambda\f$ is an eigenvalues of \f$A\f$ if and only if the matrix \f$A-\lambda I\f$ is singular, hence if and only
+ * if \f$\lambda\f$ is a root of the characteristic polynomial \f$p(\lambda) = det(A-\lambda I)\f$. This is a polynomial
+ * of degree \f$n\f$ in \f$\lambda\f$ so there are exactly \f$n\f$ complex roots. Even if the matrix real its eigenvalues
+ * can be complex, but in this case the characteristic polynomial has real coefficients and therefore the complex roots
+ * occur in conjugate pairs. For the previous reason, even if the matrix is real, the return type of the method
+ * ComputeEigs() is <tt>Eigen::Vector<std::complex<double>, -1></tt>
  *
+ * In literature many iterative methods for computing approximation eigenvalues have been developed. The derived classes
+ * of this AbstractEigs abstract class compute (some of) the eigenvalues of the matrix \f$A\f$ using different iterative
+ * methods.
+ *
+ * One of the most used methods to compute all the eigenvalues at one time is the QR method @cite GolubVanLoan .
+ * Call the function QRMethod::ComputeEigs() to have returned all the eigenvectors of a real matrix, computed using the
+ * QR Method. @see QRMethod
+ *
+ * Sometimes not all eigenvalues are necessary for the problem at hand. Some specific methods, less heavy than th QR
+ * method from a computational point of view. In particular:
+ *  - to compute the largest magnitude eigenvalue, the Power Method @cite GolubVanLoan can be used. Call the function
+ *  PowerMethod::ComputeEigs() to have returned the largest magnitude eigenvalue of a real or complex matrix, computed
+ *  using the Power Method.
+ *  @see PowerMethod
+ *  - to compute the smallest magnitude eigenvalue, the Inverse Power Method @cite GolubVanLoan can be used. Call the function
+ *  InvPowerMethod::ComputeEigs() to have returned the smallest magnitude eigenvalue of a real or complex matrix, computed
+ *  using the Inverse Power Method.
+ *  @see InvPowerMethod
+ *  - to compute the eigenvalue farthest from a particular value \f$\sigma\f$, the Power Method with shift @cite GolubVanLoan
+ *  \f$\sigma\f$ can be used. Call the function ShiftPowerMethod::ComputeEigs() to have returned the eigenvalue
+ *  farthest to a previously set shift \f$\sigma\f$, computed using the Power Method with shift.
+ *  @see ShiftPowerMethod
+ *  - to compute the eigenvalue closest to a particular value \f$\sigma\f$, the Inverse Power Method with shift @cite GolubVanLoan
+ *  \f$\sigma\f$ can be used. Call the function ShiftInvPowerMethod::ComputeEigs() to have returned the eigenvalue
+ *  closest to a previously set shift \f$\sigma\f$, computed using the Inverse Power Method with shift.
+ *  @see ShiftInvPowerMethod
  */
 template <typename T> class AbstractEigs {
 protected:

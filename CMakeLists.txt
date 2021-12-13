@@ -33,6 +33,9 @@ include_directories(src/exceptions)
 add_executable(main src/main.cc)
 target_link_libraries(main methods reader exceptions)
 
+add_executable(main_examples src/main_examples.cpp)
+target_link_libraries(main_examples methods reader exceptions)
+
 # TESTS
 add_executable(test_methods test/test_methods.cc)
 target_link_libraries(test_methods gtest_main gtest pthread methods)

@@ -2,27 +2,32 @@
 #define EXCEPTIONS_H_
 
 #include <stdexcept>
-#include <string>
 
+/**
+ * @brief Exception class for errors in opening a file.
+ * @details Used in the FileReader class.
+ */
 class FileNotOpen : public std::runtime_error {
 public:
-    FileNotOpen(const std::string &msg) : std::runtime_error(msg){};
+    using std::runtime_error::runtime_error;
 };
 
+/**
+ * @brief Exception class for errors in the initialization of a method for computing eigenvalues.
+ * @details Used in the derived classes of the class AbstractEigs .
+ */
 class InitializationError : public std::runtime_error {
 public:
     using std::runtime_error::runtime_error;
-//  InitializationError(const std::string &msg) : std::runtime_error(msg){};
 };
 
-class ReadingError : public std::runtime_error {
-public:
-    ReadingError(const std::string &msg) : std::runtime_error(msg){};
-};
-
+/**
+ * @brief Exception class for errors in the convergence of a method for computing eigenvalues.
+ * @details Used in the derived classes of the class AbstractEigs .
+ */
 class ConvergenceError : public std::runtime_error {
 public:
-    ConvergenceError(const std::string &msg) : std::runtime_error(msg){};
+    using std::runtime_error::runtime_error;
 };
 
 #endif //EXCEPTIONS_H_
