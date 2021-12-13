@@ -46,7 +46,7 @@
    0  12  25 -12   0
    2   0  -4  11   2
   -4  -4  12  16   5
-  and an initial vector x0 (transposed):1 1 1 1 1
+  and an initial vector x0 (transposed): 1 1 1 1 1
   The largest magnitude eigenvalue computed using tolerance 1e-10 and maximum number of iterations 1000 is:
   (9,0)
  *  @endcode

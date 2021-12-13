@@ -33,6 +33,7 @@ include_directories(src/exceptions)
 add_executable(main src/main.cc)
 target_link_libraries(main methods reader exceptions)
 
+# For examples
 add_executable(main_examples src/main_examples.cpp)
 target_link_libraries(main_examples methods reader exceptions)
 

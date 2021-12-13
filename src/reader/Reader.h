@@ -8,8 +8,17 @@
 #include <complex>
 
 /**
- * @class
- * TODO: ADD GENERAL DESCRIPTION OF THE READER CLASS
+ * @class Reader
+ * @tparam T Can be <tt>double</tt> or <tt>std::complex<double></tt>. It is the scalar type of which the input matrices
+ * and vectors are assumed to be.
+ * @brief Abstract class for reading matrices, vectors and scalars.
+ * @details The input can be read using the Read() method. To get the map that associates the "name" (i.e. a string) to
+ * the corresponding object, use  the GetMap() method.
+ *
+ * At the moment, only reading from file is implemented.
+ * @see FileReader
+ *
+ * @todo Add derived classes to allow input from command line and other forms of input.
  */
 template <typename T>
 class Reader {

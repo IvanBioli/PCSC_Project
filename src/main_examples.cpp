@@ -84,7 +84,7 @@ int main(int argc, char **argv) {
     ShiftInvPowerMethod<double> eigs_solver(A, tol, maxit, x0, shift);
     std::cout << "The eigenvalue of A closest to " << shift << " computed using tolerance " << tol;
     std::cout << " and maximum number of iterations " << maxit << " is:\n" << eigs_solver.ComputeEigs();
-    */
+
     double tol = 1e-10;
     int maxit = 1000;
     Eigen::Matrix<double, -1, -1> A(5,5);
@@ -99,4 +99,15 @@ int main(int argc, char **argv) {
     QRMethod<double> eigs_solver(A, tol, maxit);
     std::cout << "The eigenvalues of A computed using tolerance " << tol;
     std::cout << " and maximum number of iterations " << maxit << " are:\n" << eigs_solver.ComputeEigs();
+     */
+    std::string path = "../test/test_input_real.txt";
+    std::map<std::string, std::any> map;
+    FileReader<double> fileReader(path);
+    fileReader.Read();
+    map = fileReader.GetMap();
+    std::cout << "matrix:\n" << std::any_cast<Eigen::Matrix<double, -1, -1>>(map["matrix"]) << std::endl;
+    std::cout << "x0 (transposed): " << std::any_cast<Eigen::Vector<double, -1>>(map["x0"]).transpose() << std::endl;
+    std::cout << "tol: " << std::any_cast<double>(map["tol"]) << std::endl;
+    std::cout << "maxit: " << std::any_cast<double>(map["maxit"]) << std::endl;
+    std::cout << "shift: " << std::any_cast<double>(map["shift"]) << std::endl;
 }
