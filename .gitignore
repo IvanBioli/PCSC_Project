@@ -5,5 +5,6 @@ starting_point
 *~
 .idea
 eigen
-doc
+doc/html
+doc/latex
 input files/matrix_generator.m
