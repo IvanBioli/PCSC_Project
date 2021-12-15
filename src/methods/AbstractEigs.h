@@ -22,7 +22,7 @@
  * occur in conjugate pairs. For the previous reason, even if the matrix is real, the return type of the method
  * ComputeEigs() is <tt>Eigen::Vector<std::complex<double>, -1></tt>
  *
- * In literature many iterative methods for computing approximation eigenvalues have been developed. The derived classes
+ * In literature many iterative methods for computing approximation of eigenvalues have been developed. The derived classes
  * of this AbstractEigs abstract class compute (some of) the eigenvalues of the matrix \f$A\f$ using different iterative
  * methods.
  *

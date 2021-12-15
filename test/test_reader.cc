@@ -1,5 +1,4 @@
 #include <gtest/gtest.h>
-#include <algorithm>
 #include <memory>
 #include <any>
 #include <string>
@@ -10,8 +9,6 @@
 
 #include "Exceptions.h"
 
-// Adapted from https://stackoverflow.com/questions/23270078/test-a-specific-exception-type-is-thrown-and-the-exception-has-the-right-propert
-// TODO: CHANGE INPUT TO THE SAME OF THE TESTS
 template <typename T>
 class FileReaderTests : public ::testing::Test {
 protected:

@@ -35,8 +35,6 @@
   }
 
 
-// TODO: ORGANIZE THE TESTS INHERITANCE AS THE ONE OF THE ABSTRACTEIGS CLASSES
-// TODO: ADD TEST FOR CONVERGENCE ERROR
 template <typename T>
 class MethodsTest : public ::testing::Test {
 protected:
