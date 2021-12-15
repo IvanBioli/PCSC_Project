@@ -55,27 +55,6 @@
  *  @endcode
  */
 template <typename T> class ShiftPowerMethod : public AbstractPowerMethod<T>{
-protected:
-
-    /**
-     * @brief Shift applied to the matrix.
-     * @details Default value: \f$0\f$.
-     */
-    T _shift = 0;
-
-private:
-
-    // Function to return the eigenvalue of the matrix _A. For the power method with shift, it coincides with
-    // lambda + _shift where lambda is the value computed applying the power method to the shifted matrix.
-    T _return(T &lambda) override {return lambda + _shift;};
-
-    /**
-     * @brief Executes the multiplication step of the power method with shift.
-     * @param x vector to be multiplied.
-     * @return Result of the multiplication step, i.e. \f$ (A-sI)x = Ax - sx\f$.
-     */
-    virtual Eigen::Vector<T,-1> Multiply(const Eigen::Vector<T,-1> &x) override {return this->_A * x - _shift * x;};
-
 public:
     /**
      * @copydoc AbstractEigs<T>::AbstractEigs(const Eigen::Matrix<T, -1, -1> &A)
@@ -118,5 +97,25 @@ public:
      */
     T GetShift() {return _shift;};
 
+protected:
+
+    /**
+     * @brief Shift applied to the matrix.
+     * @details Default value: \f$0\f$.
+     */
+    T _shift = 0;
+
+private:
+
+    // Function to return the eigenvalue of the matrix _A. For the power method with shift, it coincides with
+    // lambda + _shift where lambda is the value computed applying the power method to the shifted matrix.
+    T _return(T &lambda) override {return lambda + _shift;};
+
+    /**
+     * @brief Executes the multiplication step of the power method with shift.
+     * @param x vector to be multiplied.
+     * @return Result of the multiplication step, i.e. \f$ (A-sI)x = Ax - sx\f$.
+     */
+    virtual Eigen::Vector<T,-1> Multiply(const Eigen::Vector<T,-1> &x) override {return this->_A * x - _shift * x;};
 };
 #endif //SHIFTPOWERMETHOD_H_

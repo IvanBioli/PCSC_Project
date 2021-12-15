@@ -30,25 +30,30 @@ int main(int argc, char **argv) {
         throw (std::runtime_error("Type must be real or complex"));
     }
 
-    // Real case
-    std::unique_ptr<AbstractEigs<double>> p_eigsSolver_real;
-    FileReader<double> fileReader_real(path);
-
-    // Complex case
-    std::unique_ptr<AbstractEigs<std::complex<double>>> p_eigsSolver_complex;
-    FileReader<std::complex<double>> fileReader_complex(path);
-
+    // Reader
+    std::unique_ptr<Reader<double>> p_Reader_real;
+    std::unique_ptr<Reader<std::complex<double>>> p_Reader_complex;
+    if (type == "real"){
+        p_Reader_real = std::make_unique<FileReader<double>>(path);
+    }
+    else { // type == "complex"
+        p_Reader_complex = std::make_unique<FileReader<std::complex<double>>>(path);
+    }
     // Reading from file
     std::map<std::string, std::any> map;
     if (type == "real") {
-        fileReader_real.Read();
-        map = fileReader_real.GetMap();
+        p_Reader_real->Read();
+        map = p_Reader_real->GetMap();
     }
     else { // type == "complex"
-        fileReader_complex.Read();
-        map = fileReader_complex.GetMap();
+        p_Reader_complex->Read();
+        map = p_Reader_complex->GetMap();
     }
-    // TODO: move here the check for the method
+
+
+    // Eigenvalues computation
+    std::unique_ptr<AbstractEigs<double>> p_eigsSolver_real;
+    std::unique_ptr<AbstractEigs<std::complex<double>>> p_eigsSolver_complex;
 
     // Creating the solver according to the method and the type
     if (method == "power"){
@@ -95,8 +100,7 @@ int main(int argc, char **argv) {
         throw (std::runtime_error("Unknown method"));
     }
 
-    // TODO: Print also the matrix
-    // Computing the eigenvalues
+    // Output the results
     Eigen::Vector<std::complex<double>, -1> eigs;
     if (type == "real") {
         eigs = p_eigsSolver_real->ComputeEigs();

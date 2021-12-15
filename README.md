@@ -25,7 +25,7 @@ To compile the program, perform the following steps:
 ```
 git clone https://github.com/IvanBioli/PCSC_Project.git
 ```
-3. In order to compile it you should first install *googletest*. From your terminal run the command
+2.In order to compile it you should first install *googletest*. From your terminal run the command
 ```
 git submodule update --init 
 ```
@@ -40,10 +40,10 @@ cd build
 cmake ..
 make
 ```
-5. One central executable should be present in the `build` folder with name `main.exe`.
-6. Two test executable should be present in the `build` folder with names `test_methods.exe`and `test_reader.exe`. The first one tests the methods for eigevalues computation, the second one tests the `FileReader` class.
+5. One central executable should be present in the `build` folder with name `main`.
+6. Two test executable should be present in the `build` folder with names `test_methods`and `test_reader`. The first one tests the methods for eigevalues computation, the second one tests the `FileReader` class.
 7. To generate the documentation, move in the doc folder and lunch doxygen to generate the html webpage.
-To do this, run the command:
+To do this, from the run the command:
 ```
 cd ../doc
 doxygen Doxyfile

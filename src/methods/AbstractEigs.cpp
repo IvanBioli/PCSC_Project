@@ -77,20 +77,6 @@ AbstractEigs<T>::AbstractEigs(std::map<std::string, std::any> &map) {
 }
 
 // SETTING METHODS
-
-/**
- * @details Protected method to set the matrix whose eigenvalues are to be computed.
- * If the given matrix is non square, it throws an exception of type InitializationError with message: <tt>Attempting to set a
- * non square matrix</tt>.
- */
-template <typename T>
-void AbstractEigs<T>::SetMatrix(const Eigen::Matrix<T, -1, -1> &A) {
-    if (A.rows() != A.cols()){
-        throw(InitializationError("Attempting to set a non square matrix"));
-    }
-    _A = A;
-}
-
 /**
  * @details If the given tolerance is lower than or equal to zero, it throws an exception of type InitializationError
  * with message: <tt>Attempting to set tolerance <= 0</tt>.
@@ -113,6 +99,19 @@ void AbstractEigs<T>::SetMaxit(const int &maxit) {
         throw(InitializationError("Attempting to set maximum number of iteration <= 0"));
     }
     _maxit = maxit;
+}
+
+/**
+ * @details Protected method to set the matrix whose eigenvalues are to be computed.
+ * If the given matrix is non square, it throws an exception of type InitializationError with message: <tt>Attempting to set a
+ * non square matrix</tt>.
+ */
+template <typename T>
+void AbstractEigs<T>::SetMatrix(const Eigen::Matrix<T, -1, -1> &A) {
+    if (A.rows() != A.cols()){
+        throw(InitializationError("Attempting to set a non square matrix"));
+    }
+    _A = A;
 }
 
 // Explicit instantiation for double and std::complex<double>

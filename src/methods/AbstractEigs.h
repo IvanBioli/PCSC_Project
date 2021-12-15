@@ -50,35 +50,6 @@
  *  @see ShiftInvPowerMethod
  */
 template <typename T> class AbstractEigs {
-protected:
-
-    /** @brief Matrix
-     * @details Square matrix whose eigenvalues are to be computed.
-     * */
-    Eigen::Matrix<T,-1,-1> _A;
-
-    /**
-     * @brief Tolerance
-     * @details Tolerance to be used in the stopping criterion of the method.
-     * It has to be a real number greater than zero.
-     * Default value: \f$10^{-8}\f$.
-     */
-    double _tol = 1e-8;
-
-    /**
-     * @brief Maximum number of iterations
-     * @details Maximum number of iterations for which the method is to be executed.
-     * It has to be an integer grater than zero.
-     * Default value: \f$10000\f$.
-     */
-    int _maxit = 10000;
-
-    /**
-     * @brief Protected method to set the matrix.
-     * @param A Square matrix whose eigenvalues are to be computed.
-     */
-    void SetMatrix(const Eigen::Matrix<T, -1, -1> &A);
-
 public:
 
     /**
@@ -138,6 +109,35 @@ public:
      * @return Vector of complex numbers containing the eigenvalues computed according to the method.
      */
     virtual Eigen::Vector<std::complex<double>, -1> ComputeEigs() = 0;
+
+protected:
+
+    /** @brief Matrix
+     * @details Square matrix whose eigenvalues are to be computed.
+     * */
+    Eigen::Matrix<T,-1,-1> _A;
+
+    /**
+     * @brief Tolerance
+     * @details Tolerance to be used in the stopping criterion of the method.
+     * It has to be a real number greater than zero.
+     * Default value: \f$10^{-8}\f$.
+     */
+    double _tol = 1e-8;
+
+    /**
+     * @brief Maximum number of iterations
+     * @details Maximum number of iterations for which the method is to be executed.
+     * It has to be an integer grater than zero.
+     * Default value: \f$10000\f$.
+     */
+    int _maxit = 10000;
+
+    /**
+     * @brief Protected method to set the matrix.
+     * @param A Square matrix whose eigenvalues are to be computed.
+     */
+    void SetMatrix(const Eigen::Matrix<T, -1, -1> &A);
 };
 
 

@@ -1,6 +1,6 @@
 #include "ShiftPowerMethod.h"
 
-// Constructors
+// CONSTUCTOR
 /**
  * @details At least the matrix has to be provided. If the initial vector is not provided, it is set by default to a
  * vector of all ones and a warning is given to the user. If the tolerance, the maximum number of iterations or the

@@ -1,7 +1,7 @@
 #include "AbstractPowerMethod.h"
 
 
-// Constructors
+// CONSTRUCTORS
 /**
  * Sets the given matrix and sets by default the initial vector to a vector of all ones.
  */
@@ -43,7 +43,7 @@ AbstractPowerMethod<T>::AbstractPowerMethod(std::map<std::string, std::any> &map
     }
 }
 
-//Setting methods
+//SETTING METHODS
 /**
  * @details If the given initial vector has a norm lower than \f$ 10^{-8}\f$, it throws an exception of type
  * InitializationError with message: <tt>Attempting to set initial vector with norm almost zero</tt>.

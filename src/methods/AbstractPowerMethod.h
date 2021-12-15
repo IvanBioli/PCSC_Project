@@ -42,24 +42,6 @@
  */
 
 template <typename T> class AbstractPowerMethod : public AbstractEigs<T>{
-protected:
-
-    /** @brief Initial vector.
-     * @details Initial vector for the iterations of the method.
-     * It has to be non zero vector.
-     * */
-    Eigen::Vector<T,-1> _x0;
-
-    /**
-     * Protected method to execute the multiplication step according to the method.
-     * @param x vector to be multiplied.
-     * @return Result of the multiplication step.
-     */
-    virtual Eigen::Vector<T,-1> Multiply(const Eigen::Vector<T,-1> &x) = 0;
-
-    // Function to return the eigenvalue of the matrix _A
-    virtual T _return(T &lambda) = 0;
-
 public:
     /**
      * @copydoc AbstractEigs::AbstractEigs(const Eigen::Matrix<T, -1, -1> &A)
@@ -106,6 +88,25 @@ public:
      * power method iteration.
      */
     virtual Eigen::Vector<std::complex<double>, -1> ComputeEigs() override;
+
+protected:
+
+    /** @brief Initial vector.
+     * @details Initial vector for the iterations of the method.
+     * It has to be non zero vector.
+     * */
+    Eigen::Vector<T,-1> _x0;
+
+    /**
+     * Protected method to execute the multiplication step according to the method.
+     * @param x vector to be multiplied.
+     * @return Result of the multiplication step.
+     */
+    virtual Eigen::Vector<T,-1> Multiply(const Eigen::Vector<T,-1> &x) = 0;
+
+    // Function to return the eigenvalue of the matrix _A
+    virtual T _return(T &lambda) = 0;
+
 };
 
 #endif //ABSTRACTPOWERMETHOD_H_
