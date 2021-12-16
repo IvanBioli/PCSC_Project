@@ -34,14 +34,11 @@ int main(int argc, char **argv) {
         p_Reader_complex = std::make_unique<FileReader<std::complex<double>>>(path);
     }
     // Reading from file
-    std::map<std::string, std::any> map;
     if (type == "real") {
         p_Reader_real->Read();
-        map = p_Reader_real->GetMap();
     }
     else { // type == "complex"
         p_Reader_complex->Read();
-        map = p_Reader_complex->GetMap();
     }
 
 
@@ -52,39 +49,39 @@ int main(int argc, char **argv) {
     // Creating the solver according to the method and the type
     if (method == "power"){
         if (type == "real") {
-            p_eigsSolver_real = std::make_unique<PowerMethod<double>>(map);
+            p_eigsSolver_real = std::make_unique<PowerMethod<double>>(p_Reader_real->_map);
         }
         else { // type == "complex"
-            p_eigsSolver_complex = std::make_unique<PowerMethod<std::complex<double>>>(map);
+            p_eigsSolver_complex = std::make_unique<PowerMethod<std::complex<double>>>(p_Reader_complex->_map);
         }
     }
     else if (method == "invpower"){
         if (type == "real") {
-            p_eigsSolver_real = std::make_unique<InvPowerMethod<double>>(map);
+            p_eigsSolver_real = std::make_unique<InvPowerMethod<double>>(p_Reader_real->_map);
         }
         else { // type == "complex"
-            p_eigsSolver_complex = std::make_unique<InvPowerMethod<std::complex<double>>>(map);
+            p_eigsSolver_complex = std::make_unique<InvPowerMethod<std::complex<double>>>(p_Reader_complex->_map);
         }
     }
     else if (method == "shiftpower"){
         if (type == "real") {
-            p_eigsSolver_real = std::make_unique<ShiftPowerMethod<double>>(map);
+            p_eigsSolver_real = std::make_unique<ShiftPowerMethod<double>>(p_Reader_real->_map);
         }
         else { // type == "complex"
-            p_eigsSolver_complex = std::make_unique<ShiftPowerMethod<std::complex<double>>>(map);
+            p_eigsSolver_complex = std::make_unique<ShiftPowerMethod<std::complex<double>>>(p_Reader_complex->_map);
         }
     }
     else if (method == "shiftinvpower"){
         if (type == "real") {
-            p_eigsSolver_real = std::make_unique<ShiftInvPowerMethod<double>>(map);
+            p_eigsSolver_real = std::make_unique<ShiftInvPowerMethod<double>>(p_Reader_real->_map);
         }
         else { // type == "complex"
-            p_eigsSolver_complex = std::make_unique<ShiftInvPowerMethod<std::complex<double>>>(map);
+            p_eigsSolver_complex = std::make_unique<ShiftInvPowerMethod<std::complex<double>>>(p_Reader_complex->_map);
         }
     }
     else if (method == "qr"){
         if (type == "real") {
-            p_eigsSolver_real = std::make_unique<QRMethod<double>>(map);
+            p_eigsSolver_real = std::make_unique<QRMethod<double>>(p_Reader_real->_map);
         }
         else { // type == "complex"
             throw (std::runtime_error("QR Method implemented for real matrices only"));
@@ -98,23 +95,15 @@ int main(int argc, char **argv) {
     Eigen::Vector<std::complex<double>, -1> eigs;
     if (type == "real") {
         eigs = p_eigsSolver_real->ComputeEigs();
-        std::cout << "Initial matrix:" << std::endl;
-        std::cout << std::any_cast<Eigen::Matrix<double, -1, -1>>(map["matrix"]) << std::endl;
+        std::cout << "Matrix:" << std::endl;
+        std::cout << std::any_cast<Eigen::Matrix<double, -1, -1>>(p_Reader_real->_map["matrix"]) << std::endl;
     }
     else { // type == "complex"
         eigs = p_eigsSolver_complex->ComputeEigs();
-        std::cout << "Initial matrix:" << std::endl;
-        std::cout << std::any_cast<Eigen::Matrix<std::complex<double>, -1, -1>>(map["matrix"]) << std::endl;
+        std::cout << "Matrix:" << std::endl;
+        std::cout << std::any_cast<Eigen::Matrix<std::complex<double>, -1, -1>>(p_Reader_complex->_map["matrix"]) << std::endl;
     }
-    if (method == "shiftpower" || method == "shiftinvpower") {
-        std::cout << "Shift:";
-        if (type == "real") {
-            std::cout << std::any_cast<double>(map["shift"]) << std::endl;
-        }
-        else { // type == "complex"
-            std::cout << std::any_cast<std::complex<double>>(map["shift"]) << std::endl;
-        }
-    }
+    
     std::cout << "Eigenvalues computed using " << method << " method" << std::endl;
     std::cout << eigs << std::endl;
 }

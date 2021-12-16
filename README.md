@@ -40,6 +40,10 @@ To do this, from your terminal run the command:
 cd ../doc
 doxygen Doxyfile
 ```
+8. To open the main page of the documentation, open the file `html/index.html`with your browser. If you have firefox installed run the command:
+```
+firefox html/index.html
+```
 ## Computation of eigenvalues
 To compute the eigenvalues of a matrix, use the executable `main`.
 Three arguments must be provided, following this order:
@@ -51,8 +55,8 @@ See the documentation for the format requirements of the input. Two examples are
 provided in `input_files/real_input.txt` and `input_files/complex_input.txt`.
 - the type of the input, `real` for real matrices and `complex` for complex matrices.
 
-The output of the eigenvalues' computation will be written on standard output, preceded by the matrix and the eventual 
-shift applied.
+The output of the eigenvalues' computation will be written on standard output, preceded by the matrix for which the 
+computation is executed and the name of the method applied.
 
 You can test our methods on two predefined inputs. 
 For the real case, the following parameters are provided in `input_files/real_input.txt`
