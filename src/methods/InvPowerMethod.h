@@ -89,8 +89,13 @@ private:
      */
     Eigen::FullPivLU<Eigen::Matrix<T, -1, -1>> _LU;
 
-    // Function to return the eigenvalue of the matrix _A. For the inverse power method, it coincides with 1/lambda
-    // where lambda is the value computed applying the power method to the inverse of _A.
+
+    /**
+     * Method to return the eigenvalue of the matrix _A.
+     * @param lambda approximation obtained at the end of the iterations of the power method applied to the inverse of
+     * _A.
+     * @return 1 / lambda
+     */
     T _return(T &lambda) override {return (double(1) / lambda);};
 
     /**

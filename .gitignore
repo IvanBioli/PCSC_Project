@@ -8,3 +8,7 @@ eigen
 doc/html
 doc/latex
 input_files/matrix_generator.m
+src/main_examples.cpp
+TODO.txt
+report/Diagrams.drawio
+report/Flow diagram.PNG

@@ -42,7 +42,7 @@
  *  @see InvPowerMethod
  *  - to compute the eigenvalue farthest from a particular value \f$\sigma\f$, the Power Method with shift @cite GolubVanLoan
  *  \f$\sigma\f$ can be used. Call the function ShiftPowerMethod::ComputeEigs() to have returned the eigenvalue
- *  farthest to a previously set shift \f$\sigma\f$, computed using the Power Method with shift.
+ *  farthest from a previously set shift \f$\sigma\f$, computed using the Power Method with shift.
  *  @see ShiftPowerMethod
  *  - to compute the eigenvalue closest to a particular value \f$\sigma\f$, the Inverse Power Method with shift @cite GolubVanLoan
  *  \f$\sigma\f$ can be used. Call the function ShiftInvPowerMethod::ComputeEigs() to have returned the eigenvalue

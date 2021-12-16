@@ -110,4 +110,5 @@ int main(int argc, char **argv) {
     std::cout << "tol: " << std::any_cast<double>(map["tol"]) << std::endl;
     std::cout << "maxit: " << std::any_cast<double>(map["maxit"]) << std::endl;
     std::cout << "shift: " << std::any_cast<double>(map["shift"]) << std::endl;
+
 }

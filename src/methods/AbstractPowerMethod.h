@@ -98,13 +98,16 @@ protected:
     Eigen::Vector<T,-1> _x0;
 
     /**
-     * Protected method to execute the multiplication step according to the method.
+     * Protected pure virtual method to execute the multiplication step according to the method.
      * @param x vector to be multiplied.
      * @return Result of the multiplication step.
      */
     virtual Eigen::Vector<T,-1> Multiply(const Eigen::Vector<T,-1> &x) = 0;
 
-    // Function to return the eigenvalue of the matrix _A
+    /**
+     * Protected pure virtual method to return the eigenvalue of the matrix _A.
+     * @param lambda approximation obtained at the end of the iterations of the power method.
+     */
     virtual T _return(T &lambda) = 0;
 
 };

@@ -76,8 +76,11 @@ public:
 
 private:
 
-    // Function to return the eigenvalue of the matrix _A. For the power method, it coincides with the lambda computed
-    // by the power iteration.
+    /**
+     * Method to return the eigenvalue of the matrix _A.
+     * @param lambda approximation obtained at the end of the iterations of the power method applied to _A.
+     * @return lambda
+     */
     T _return(T &lambda) override {return lambda;};
 
     /**

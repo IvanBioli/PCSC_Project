@@ -90,9 +90,12 @@ private:
      */
     Eigen::FullPivLU<Eigen::Matrix<T, -1, -1>> _LU;
 
-    // Function to return the eigenvalue of the matrix _A. For the inverse power method with shift, it coincides with
-    // 1 / lambda + _shift where lambda is the value computed applying the power method to the inverse of the shifted
-    // matrix.
+    /**
+     * Method to return the eigenvalue of the matrix _A.
+     * @param lambda approximation obtained at the end of the iterations of the power method applied to the inverse of
+     * (_A - _shift * I).
+     * @return 1 / lambda + _shift
+     */
     T _return(T &lambda) override {return (double(1) / lambda + this->_shift);};
 
     /**

@@ -87,7 +87,7 @@ public:
      * @brief Returns the eigenvalues computed using the QR method.
      * @return Vector of complex numbers containing the eigenvalues computed using the QR method.
      */
-    virtual Eigen::Vector<std::complex<double>, -1> ComputeEigs();
+    virtual Eigen::Vector<std::complex<double>, -1> ComputeEigs() override;
 };
 
 #endif //QRMETHOD_H_

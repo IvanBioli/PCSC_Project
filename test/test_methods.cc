@@ -102,20 +102,10 @@ void MethodsTest<std::complex<double>>::Initialization() {
             c(6, 2), c(-4, 4), c(1, 12), c(-8, 8), c(0,0),
             c(1, -2), c(6, -3), c(15, -10), c(15, -7), c(0,0),
             c(8, 3), c(-6, 3), c(-6, 11), c(-6, 9), c(9,2);
-    /*
-    -6.0000 - 1.0000i   4.0000 - 4.0000i  -1.0000 -11.0000i   8.0000 - 8.0000i   0.0000 + 0.0000i
-    -10.0000 - 4.0000i   5.0000 - 6.0000i  -8.0000 -18.0000i   4.0000 -10.0000i   0.0000 + 0.0000i
-    6.0000 + 2.0000i  -4.0000 + 4.0000i   1.0000 +12.0000i  -8.0000 + 8.0000i   0.0000 + 0.0000i
-    1.0000 - 2.0000i   6.0000 - 3.0000i  15.0000 -10.0000i  15.0000 - 7.0000i   0.0000 + 0.0000i
-    8.0000 + 3.0000i  -6.0000 + 3.0000i  -6.0000 +11.0000i  -6.0000 + 9.0000i   9.0000 + 2.0000i
-    */
 
     // Setting the exact eigenvalues
     exact_eigs.resize(n);
     exact_eigs << c(0, 1), c(3, -1), c(5,0), c(7,-2), c(9,2);
-    /*
-     0.0000 + 1.0000i   3.0000 - 1.0000i   5.0000 + 0.0000i   7.0000 - 2.0000i   9.0000 + 2.0000i
-     */
 
     // Setting the shift
     shift = c(4,1);
@@ -135,8 +125,8 @@ TYPED_TEST(MethodsTest, PowerMethodsInitialization){
      * Tests for constructors and methods directly inherited from AbstractEigs and AbstractPower classes with no
      * overriding are valid also for all other classes that directly inherit them.
      */
-    
     std::unique_ptr<PowerMethod<TypeParam>> p_powerMethod;
+
     // Testing the constructors
     p_powerMethod = std::make_unique<PowerMethod<TypeParam>>(this->A);
     ASSERT_TRUE(this->A.isApprox(p_powerMethod->GetMatrix(), 0));
@@ -188,7 +178,7 @@ TYPED_TEST(MethodsTest, PowerMethodsInitialization){
 TYPED_TEST(MethodsTest, ShiftMethodsInitialization){
     std::unique_ptr<ShiftPowerMethod<TypeParam>> p_shiftPowerMethod;
 
-    // Testing the constructors that are not directly inherited from the AbstractEigs or the AbstractPowerMethod classes
+    // Testing the constructors that do not only call the ones from the AbstractEigs or the AbstractPowerMethod classes
     p_shiftPowerMethod = std::make_unique<ShiftPowerMethod<TypeParam>>(this->A, this->tol, this->maxit, this->x0, this->shift);
     ASSERT_TRUE(p_shiftPowerMethod->GetShift() == this->shift);
 
@@ -231,11 +221,11 @@ TYPED_TEST(MethodsTest, ShiftInvPowerMethod) {
 TEST_F(MethodsTest_double, QRMethod){
     this->p_eigsSolver = std::make_unique<QRMethod<double>>(this->A, this->tol, this->maxit);
     this->computed_eigs = this->p_eigsSolver->ComputeEigs();
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < n ; i++) {
         EXPECT_NEAR(this->exact_eigs[i].real(), this->computed_eigs[i].real(), 1e-8);
         EXPECT_NEAR(this->exact_eigs[i].imag(), this->computed_eigs[i].imag(), 1e-8);
     }
-    this->p_eigsSolver.reset(new QRMethod<double>(this->A, this->tol, 3));
+    this->p_eigsSolver = std::make_unique<QRMethod<double>>(this->A, this->tol, 3);
     ASSERT_THROW_MSG(this->p_eigsSolver->ComputeEigs(), ConvergenceError, "Reached maximum number of iterations");
 
 }

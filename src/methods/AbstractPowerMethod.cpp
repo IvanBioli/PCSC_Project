@@ -28,7 +28,7 @@ AbstractPowerMethod<T>::AbstractPowerMethod(const Eigen::Matrix<T, -1, -1> &A, c
  */
 template <typename T>
 AbstractPowerMethod<T>::AbstractPowerMethod(std::map<std::string, std::any> &map) : AbstractEigs<T>(map) {
-    // // Getting and setting the initial vector
+    // Getting and setting the initial vector
     if (map.count("x0") == 0) {
         std::cerr << "WARNING: Unspecified initial vector (x0). Set by default to vector of all ones" << std::endl;
         _x0 = Eigen::Vector<T, -1>::Ones(this->_A.cols());
@@ -62,6 +62,7 @@ void AbstractPowerMethod<T>::SetInitVec(const Eigen::Matrix<T, -1, 1> &x0) {
     _x0 = x0;
 }
 
+// COMPUTATION OF EIGENVALUES
 /**
  * @details Computes the eigenvalues following the general scheme of a power method iteration. The method changes
  * according to how the multiplication step is executed.

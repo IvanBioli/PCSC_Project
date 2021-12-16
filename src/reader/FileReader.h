@@ -46,8 +46,7 @@
     shift: 5.2
  * @endcode
  */
-template<typename T>
-class FileReader: public Reader<T> {
+template<typename T> class FileReader: public Reader<T> {
 public:
     /**
      * @brief Path to the input file.

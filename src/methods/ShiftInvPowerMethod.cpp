@@ -17,6 +17,7 @@ Eigen::Vector<T, -1> ShiftInvPowerMethod<T>::Multiply(const Eigen::Vector<T, -1>
     // matrix.
     return _LU.solve(x);
 }
+
 // Explicit instantiation for double and std::complex<double>
 template class ShiftInvPowerMethod<double>;
 template class ShiftInvPowerMethod<std::complex<double>>;

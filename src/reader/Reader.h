@@ -20,8 +20,7 @@
  *
  * @todo Add derived classes to allow input from command line and other forms of input.
  */
-template <typename T>
-class Reader {
+template <typename T> class Reader {
 public:
     /**
      * @brief Returns the map.

@@ -1,9 +1,7 @@
 #include <iostream>
 #include <complex>
 #include <string>
-#include <exception>
 #include <memory>
-#include <iomanip>
 
 #include "AbstractEigs.h"
 #include "AbstractPowerMethod.h"
@@ -20,11 +18,7 @@ int main(int argc, char **argv) {
     std::string method = argv[1];
     std::string path = argv[2];
     std::string type = argv[3];
-    /*
-    std::string method = "qr";
-    std::string path = "C:/Users/ivanb/Documents/GitHub/PCSC_Project/input files/real_input.txt";
-    std::string type = "real";
-    */
+
     // type must be "real" or "complex"
     if (type != "real" && type != "complex"){
         throw (std::runtime_error("Type must be real or complex"));

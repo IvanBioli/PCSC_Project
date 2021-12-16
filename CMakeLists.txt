@@ -33,15 +33,9 @@ include_directories(src/exceptions)
 add_executable(main src/main.cc)
 target_link_libraries(main methods reader exceptions)
 
-# For examples
-add_executable(main_examples src/main_examples.cpp)
-target_link_libraries(main_examples methods reader exceptions)
-
 # TESTS
 add_executable(test_methods test/test_methods.cc)
 target_link_libraries(test_methods gtest_main gtest pthread methods)
 
 add_executable(test_reader test/test_reader.cc)
 target_link_libraries(test_reader gtest_main gtest pthread reader)
-
-#add_custom_target(test ./test_pcsc DEPENDS test_pcsc)

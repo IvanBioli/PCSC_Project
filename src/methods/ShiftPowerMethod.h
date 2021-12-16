@@ -107,8 +107,11 @@ protected:
 
 private:
 
-    // Function to return the eigenvalue of the matrix _A. For the power method with shift, it coincides with
-    // lambda + _shift where lambda is the value computed applying the power method to the shifted matrix.
+    /**
+     * Method to return the eigenvalue of the matrix _A.
+     * @param lambda approximation obtained at the end of the iterations of the power method applied to (_A - _shift * I).
+     * @return lambda + _shift
+     */
     T _return(T &lambda) override {return lambda + _shift;};
 
     /**
