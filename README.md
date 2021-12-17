@@ -18,6 +18,7 @@ git clone https://github.com/IvanBioli/PCSC_Project.git
 ```
 2. In order to compile the tests you should first install *googletest*. From your terminal run the command
 ```
+cd PCSC_Project
 git submodule update --init 
 ```
 3. Then you should clone the *eigen* library. From your terminal run the command 
@@ -34,13 +35,15 @@ make
 5. One central executable should be present in the `build` folder with name `main`.
 6. Two test executable should be present in the `build` folder with names `test_methods` and `test_reader`. The first one
 tests the methods for eigevalues computation, the second one tests the `FileReader` class.
-7. To generate the documentation, move in the doc folder and lunch doxygen to generate the html webpage.
-To do this, from your terminal run the command:
+7. To generate the documentation, move in the doc folder and use [Doxygen](https://www.doxygen.nl/index.html)  to generate the html webpage.
+First install Doxygen following the instructions [here](https://www.doxygen.nl/download.html), then from your terminal 
+run the command:
 ```
 cd ../doc
 doxygen Doxyfile
 ```
-8. To open the main page of the documentation, open the file `html/index.html`with your browser. If you have firefox installed run the command:
+8. To open the main page of the documentation, open the file `html/index.html`with your browser. 
+If you have Firefox installed run the command:
 ```
 firefox html/index.html
 ```
@@ -55,7 +58,7 @@ See the documentation for the format requirements of the input. Two examples are
 provided in `input_files/real_input.txt` and `input_files/complex_input.txt`.
 - the type of the input, `real` for real matrices and `complex` for complex matrices.
 
-The output of the eigenvalues' computation will be written on standard output, preceded by the matrix for which the 
+The output of the eigenvalues computation will be written on standard output, preceded by the matrix for which the 
 computation is executed and the name of the method applied.
 
 You can test our methods on two predefined inputs. 
